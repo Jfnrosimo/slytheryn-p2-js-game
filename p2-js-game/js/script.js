@@ -16,7 +16,7 @@ let foodYCoor;
 let snakeXCoor = sizeOfBlock * 5;
 let snakeYCoor = sizeOfBlock * 5;
 
-//coordinate for moving the snake
+//coordinates for moving the snake
 let moveXCoor = 0;
 let moveYCoor = 0;
 
@@ -28,10 +28,13 @@ let gameLost = false;
 createFood();
 document.addEventListener('keyup', changePath);
 createMap(); //call map
-setInterval(createMap, 1000);
+setInterval(createMap, 1000/100);
 
 function createMap() {
-
+    if(gameLost) {
+        return;
+    }
+    
     context.fillStyle = 'rgb(0,0,0, 0.3)';
     context.fillRect(0, 0, map.width, map.height);
 
