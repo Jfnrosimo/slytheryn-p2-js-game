@@ -8,19 +8,25 @@
 }
 h1 {
     font-family: 'Mystery Quest', cursive;
+    font-size: 4rem;
     text-align: center;
     margin-top: 50px;
 }
 main {
-    width: 60%;
-    margin-left: 20%;
-    margin-top: 90px;
+    margin-top: 70px;
 }
 main, h1 {
     width: 60%;
     margin-left: 20%;
 }
 canvas {
-    background-image: url('../assets/images/cartoon_forest_bg.png');
     background-size: cover;
+    width: 100%;
 }
+.menu {
+    display: flex;
+    justify-content: space-evenly;
+}
+#start {
+    padding: 10px;
+}   
