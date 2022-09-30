@@ -9,5 +9,5 @@ main h1 {
     font-family: 'Mystery Quest', cursive;
 }
 canvas {
-    /* background-image: url('../assets/images/cartoon_forest_bg.png'); */
+    background-image: url('../assets/images/cartoon_forest_bg.png');
 }

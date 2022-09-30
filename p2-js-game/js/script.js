@@ -24,7 +24,11 @@ let snakeFrame = [];
 
 let gameLost = false;
 
+
+createFood();
+document.addEventListener('keyup', changePath);
 createMap(); //call map
+setInterval(createMap, 1000);
 
 function createMap() {
 
@@ -67,13 +71,30 @@ function createMap() {
 }
 
 function changePath(event) {
-    if(event.code == 'ArrowLeft' && moveYCoor != 1) {
+    if (event.code == 'ArrowLeft' && moveXCoor != 1) {
         moveXCoor = -1;
         moveYCoor = 0;
     }
 
-    if(event.code == 'ArrowRight' && moveXCoor != -1) {
-        
+    if (event.code == 'ArrowRight' && moveXCoor != -1) {
+        moveXCoor = 1;
+        moveYCoor = 0;
     }
+
+    if (event.code == 'ArrowUp' && moveYCoor != 1) {
+        moveXCoor = 0;
+        moveYCoor = 1;
+    }
+
+    if (event.code == 'ArrowDown' && moveYCoor != -1) {
+        moveXCoor = 0;
+        moveYCoor = -1;
+    }
+}
+
+function createFood() {
+    //(0-1) * col --> (0 - 19.9999) --> (0-19) * 25
+    foodXCoor = Math.floor(Math.random() * col) * sizeOfBlock;
+    foodYCoor = Math.floor(Math.random() * row) * sizeOfBlock;
 }
 
