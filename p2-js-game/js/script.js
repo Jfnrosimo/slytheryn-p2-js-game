@@ -16,12 +16,11 @@ let foodImage = new Image();
 foodImage.src = '../assets/images/chicken.png';
 
 //variables of the snake head / start box
-let snakeXCoor = sizeOfBlock * 5;
-let snakeYCoor = sizeOfBlock * 5;
+let snakeXCoor = sizeOfBlock;
+let snakeYCoor = sizeOfBlock;
 
 let snakeHead = new Image();
 snakeHead.src = '../assets/images/snake_head.png';
-
 
 //coordinates for moving the snake
 let moveXCoor = 0;
@@ -41,24 +40,42 @@ let previousScore = 0;
 
 //difficulty variables
 let easyBtn = document.querySelector('.easy');
-let mediumBtn = document.querySelector('.medium');
+let moderateBtn = document.querySelector('.moderate');
 let hardBtn = document.querySelector('.hard');
+
+// play/start button
+let play = document.querySelector('.play');
+let main = document.querySelector('main');
+let startSection = document.querySelector('.play-container');
+
+play.addEventListener('click', () => {
+    main.removeChild(startSection);
+    createMap();
+});
+
+createFood();
+document.addEventListener('keyup', changePath);
 
 
 //set easy as default difficulty
-createFood();
-document.addEventListener('keyup', changePath);
-// createMap(); //call map
-setInterval(createMap, 1000/5); //second parameter is in milliseconds
+easyBtn.addEventListener('click', () => {
+    setInterval(createMap, 1000/3);
+    console.log('easy mode');
+    restart();
+    
+});
 
-//set difficulty to medium
-mediumBtn.addEventListener('click', () => {
-    setInterval(createMap, 1000/6);
+//set difficulty to moderate
+moderateBtn.addEventListener('click', () => {
+    setInterval(createMap, 1000/5);
+    restart();
 });
 
 //set difficulty to hard
 hardBtn.addEventListener('click', () => {
-    setInterval(createMap, 1000/8);
+    setInterval(createMap, 1000/7);
+    console.log('hard mode');
+    
 });
 
 function createMap() {
@@ -67,6 +84,7 @@ function createMap() {
         return;
     }
 
+    //draw map background
     context.drawImage(mapBackground, 0, 0, map.width,map.height);
     
     // draw the random food in the map
@@ -109,6 +127,7 @@ function createMap() {
         if (snakeXCoor == snakeFrame[count][0] && snakeYCoor == snakeFrame[count][1]) {
             gameLost = true;
             alert('You Died!');
+
         }
     }
 }
@@ -142,16 +161,12 @@ function createFood() {
 }
 
 //controls and miscellaneous
-let startBtn = document.querySelector('#start');
-let restartBtn = document.querySelector('#restart');
+let restartBtn = document.querySelector('.restart');
 
-startBtn.addEventListener('click', () => {
-    
-});
-
-restartBtn.addEventListener('click', () => {
-    snakeXCoor = sizeOfBlock * 5;
-    snakeYCoor = sizeOfBlock * 5;
+//restart the game
+function restart() {
+    snakeXCoor = sizeOfBlock;
+    snakeYCoor = sizeOfBlock;
 
     moveXCoor = 0;
     moveYCoor = 0;
@@ -160,7 +175,10 @@ restartBtn.addEventListener('click', () => {
 
     gameLost = false;
 
-    scoreNumber = document.querySelector('.score-number');
-    previousScore = 0;
+    scoreNumber.textContent = 0;
+}
+restartBtn.addEventListener('click', () => {
+    restart();
+    console.log('restart is working');
 });
 

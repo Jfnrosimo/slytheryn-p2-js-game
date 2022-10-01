@@ -4,30 +4,32 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Slytherin</title>
+    <title>Slytheryn</title>
     <link rel="stylesheet" href="./css/styles.css">
     <script src="./js/script.js" defer></script>
 </head>
 <body>
     <header>
-        <h1>Slytherin</h1>
+        <h1>Slytheryn</h1>
     </header>
     <main>
+        <section class="play-container">
+            <input type="button" class="play" value="Play Game!">
+        </section>
         <section class="menu-btn">
             <div class="difficulty">
                 <label for="easy">Difficulty:</label>
-                <input type="button" class="easy" value="Easy">
-                <input type="button" class="medium" value="Medium">
-                <input type="button" class="hard" value="Hard">
+                <input type="button" class="easy level" value="Easy">
+                <input type="button" class="moderate level" value="Moderate">
+                <input type="button" class="hard level" value="Hard">
             </div>
         </section>
         <p>Score: <span class="score-number">0</span></p>
         <canvas id='map'></canvas>
-        <!-- <img class="snake-bg" src="./assets/images/snake_bg.png" alt="snake background"> -->
-        <section class="menu">
-            <input type="button" id="start" value="Start">
-            <input type="button" id="restart" value="Restart">
-        </section>
+        <div class="restart-container">
+            <input type="button" class="restart" value="Restart">
+        </div>
+        
     </main>
 </body>
 </html>
