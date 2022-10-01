@@ -12,6 +12,9 @@ let context = map.getContext('2d'); //draw empty map
 let foodXCoor;
 let foodYCoor;
 
+let foodImage = new Image();
+foodImage.src = '../assets/images/chicken.png';
+
 //variables of the snake head / start box
 let snakeXCoor = sizeOfBlock * 5;
 let snakeYCoor = sizeOfBlock * 5;
@@ -30,11 +33,12 @@ let gameLost = false;
 
 //background
 let mapBackground = new Image();
-mapBackground.src = '../assets/images/map_bg.png'
+mapBackground.src = '../assets/images/map_bg_2.jpg';
+
 
 createFood();
 document.addEventListener('keyup', changePath);
-// createMap(); //call map 
+// createMap(); //call map
 setInterval(createMap, 1000/5); //second parameter is in milliseconds
 
 function createMap() {
@@ -43,12 +47,11 @@ function createMap() {
         return;
     }
 
-    context.drawImage(mapBackground, 0,0);
-    context.fillStyle = 'rgb(244,244,244, 0.3)';
-    context.fillRect(0, 0, map.width, map.height);
+    context.drawImage(mapBackground, 0, 0, map.width,map.height);
+    
 
-    context.fillStyle = 'red';
-    context.fillRect(foodXCoor, foodYCoor, sizeOfBlock, sizeOfBlock);
+    // draw the random food in the map
+    context.drawImage(foodImage,foodXCoor, foodYCoor, sizeOfBlock, sizeOfBlock);
 
     if (snakeXCoor == foodXCoor && snakeYCoor == foodYCoor) {
         snakeFrame.push([foodXCoor, foodYCoor]);
@@ -63,10 +66,11 @@ function createMap() {
         snakeFrame[0] = [snakeXCoor, snakeYCoor];
     }
 
-    context.fillStyle = 'green';
+    
     snakeXCoor += moveXCoor * sizeOfBlock;
     snakeYCoor += moveYCoor * sizeOfBlock;
-    context.fillRect(snakeXCoor, snakeYCoor, sizeOfBlock, sizeOfBlock);
+    context.drawImage(snakeHead, snakeXCoor, snakeYCoor, sizeOfBlock, sizeOfBlock);
+    context.fillStyle = 'green';    
 
     for (let count = 0; count < snakeFrame.length; count++) {
         context.fillRect(snakeFrame[count][0], snakeFrame[count][1], sizeOfBlock, sizeOfBlock);
