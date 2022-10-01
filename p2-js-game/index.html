@@ -13,8 +13,17 @@
         <h1>Slytherin</h1>
     </header>
     <main>
+        <section class="menu-btn">
+            <div class="difficulty">
+                <label for="easy">Difficulty:</label>
+                <input type="button" class="easy" value="Easy">
+                <input type="button" class="medium" value="Medium">
+                <input type="button" class="hard" value="Hard">
+            </div>
+        </section>
+        <p>Score: <span class="score-number">0</span></p>
         <canvas id='map'></canvas>
-        <img class="snake-bg" src="./assets/images/snake_bg.png" alt="snake background">
+        <!-- <img class="snake-bg" src="./assets/images/snake_bg.png" alt="snake background"> -->
         <section class="menu">
             <input type="button" id="start" value="Start">
             <input type="button" id="restart" value="Restart">

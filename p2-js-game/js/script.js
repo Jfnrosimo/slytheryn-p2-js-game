@@ -29,17 +29,37 @@ let moveYCoor = 0;
 
 let snakeFrame = [];
 
-let gameLost = false;
+let gameLost = false; //default variable for detecting if game is lost
 
 //background
 let mapBackground = new Image();
 mapBackground.src = '../assets/images/map_bg_2.jpg';
 
+//score variables
+let scoreNumber = document.querySelector('.score-number');
+let previousScore = 0;
 
+//difficulty variables
+let easyBtn = document.querySelector('.easy');
+let mediumBtn = document.querySelector('.medium');
+let hardBtn = document.querySelector('.hard');
+
+
+//set easy as default difficulty
 createFood();
 document.addEventListener('keyup', changePath);
 // createMap(); //call map
 setInterval(createMap, 1000/5); //second parameter is in milliseconds
+
+//set difficulty to medium
+mediumBtn.addEventListener('click', () => {
+    setInterval(createMap, 1000/6);
+});
+
+//set difficulty to hard
+hardBtn.addEventListener('click', () => {
+    setInterval(createMap, 1000/8);
+});
 
 function createMap() {
 
@@ -49,13 +69,16 @@ function createMap() {
 
     context.drawImage(mapBackground, 0, 0, map.width,map.height);
     
-
     // draw the random food in the map
     context.drawImage(foodImage,foodXCoor, foodYCoor, sizeOfBlock, sizeOfBlock);
 
     if (snakeXCoor == foodXCoor && snakeYCoor == foodYCoor) {
         snakeFrame.push([foodXCoor, foodYCoor]);
         createFood();
+        
+        // add score
+        previousScore += 10;
+        scoreNumber.textContent = previousScore;
     }
 
     for ( let count = snakeFrame.length - 1; count > 0; count--) {
@@ -127,6 +150,17 @@ startBtn.addEventListener('click', () => {
 });
 
 restartBtn.addEventListener('click', () => {
-    console.log('you clicked restart');
+    snakeXCoor = sizeOfBlock * 5;
+    snakeYCoor = sizeOfBlock * 5;
+
+    moveXCoor = 0;
+    moveYCoor = 0;
+
+    snakeFrame = [];
+
+    gameLost = false;
+
+    scoreNumber = document.querySelector('.score-number');
+    previousScore = 0;
 });
 

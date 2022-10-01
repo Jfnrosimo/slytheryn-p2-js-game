@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Mystery+Quest&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Alkalami&family=Mystery+Quest&display=swap'); 
 
 * {
     margin: 0;
@@ -14,10 +15,19 @@ h1 {
 }
 main {
     margin-top: 50px;
+    font-family: 'Alkalami', serif;
+}
+input {
+    font-family: 'Alkalami', serif;
+    cursor: pointer;
 }
 main, h1 {
     width: 60%;
     margin-left: 20%;
+}
+.snake-bg {
+    position: absolute;
+
 }
 canvas {
     width: 100%;
