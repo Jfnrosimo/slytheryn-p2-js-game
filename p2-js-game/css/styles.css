@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Mystery+Quest&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Alkalami&family=Mystery+Quest&display=swap'); 
+@import url('http://fonts.cdnfonts.com/css/enhanced-led-board-7'); 
 
 * {
     margin: 0;
@@ -9,13 +9,13 @@
 }
 h1 {
     font-family: 'Mystery Quest', cursive;
-    font-size: 4rem;
+    font-size: 5rem;
     text-align: center;
     margin-top: 30px;
 }
 main {
     margin-top: 20px;
-    font-family: 'Alkalami', serif;
+    font-family: 'Enhanced LED Board-7', sans-serif;
     width: 100%;
 }
 .play-container {
@@ -27,6 +27,24 @@ main {
     justify-content: center;
     align-items: center;
     background-color: rgb(208, 240, 191 , .8);
+    text-align: center;
+}
+.start-game {
+    font-size: 3.5rem;  
+}
+.level {
+    font-family: 'Enhanced LED Board-7', sans-serif;
+    font-size: 1.2rem;
+    font-weight: bold;
+    padding: 5px;
+}
+.level:hover {
+    border: 1px solid black;
+    box-shadow: 5px 5px gray;
+}
+.difficulty h3 {
+    font-size: 1.5rem; 
+    padding-bottom: 20px;
 }
 .play {
     height: 30%;
