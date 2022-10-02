@@ -7,6 +7,9 @@
     box-sizing: border-box;
     outline: 1px solid black;
 }
+body {
+    background-color: #EDEDED;
+}
 h1 {
     font-family: 'Mystery Quest', cursive;
     font-size: 5rem;
@@ -17,25 +20,33 @@ main {
     margin-top: 20px;
     font-family: 'Enhanced LED Board-7', sans-serif;
     width: 100%;
+    font-weight: bold;
 }
-.play-container {
+.play-container, 
+.game-lost {
     position: absolute;
     width: 60%;
     height: 79%; 
     border: 1px solid green;
+    text-align: center;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: rgb(208, 240, 191 , .8);
-    text-align: center;
 }
-.start-game {
-    font-size: 3.5rem;  
+.play-container {
+    background-color: rgb(208, 240, 191 , .8);
+    
+    
+}
+.start-game,
+.game-lost h3 {
+    font-size: 3.5rem;
+    text-transform: uppercase;
+    font-weight: 900;
 }
 .level {
     font-family: 'Enhanced LED Board-7', sans-serif;
     font-size: 1.2rem;
-    font-weight: bold;
     padding: 5px;
 }
 .level:hover {
@@ -46,10 +57,20 @@ main {
     font-size: 1.5rem; 
     padding-bottom: 20px;
 }
-.play {
-    height: 30%;
-    font-size: 4rem;
-    padding: 10px 20px 0;
+.easy:hover {
+    background-color: #D3EF3C;
+}
+.moderate:hover{
+    background-color: #DE8F19;
+}
+.hard:hover {
+    background-color: #DB2728;
+}
+.game-lost {
+    flex-direction: column;
+}
+.game-lost h3 {
+    display: block;
 }
 input {
     font-family: 'Alkalami', serif;
