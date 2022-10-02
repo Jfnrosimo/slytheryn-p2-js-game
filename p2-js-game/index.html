@@ -12,10 +12,15 @@
     <header>
         <h1>Slytheryn</h1>
     </header>
+
     <main>
-        <section class="play-container">
+
+        <!-- create play button after window loads -->
+        <div class="play-container">
             <input type="button" class="play" value="Play Game!">
-        </section>
+        </div>
+
+        <!-- create section for game menu -->
         <section class="menu-btn">
             <div class="difficulty">
                 <label for="easy">Difficulty:</label>
@@ -24,12 +29,23 @@
                 <input type="button" class="hard level" value="Hard">
             </div>
         </section>
+
+        <!-- score counter -->
         <p>Score: <span class="score-number">0</span></p>
+
+        <!-- map canvas -->
         <canvas id='map'></canvas>
+
+        <!-- restart button -->
         <div class="restart-container">
             <input type="button" class="restart" value="Restart">
         </div>
-        
+
+        <!-- create a pop-up after losing -->
+        <div class="game-lost">
+            <p>You died...</p>
+            <input type="button" class="play-again">
+        </div>
     </main>
 </body>
 </html>

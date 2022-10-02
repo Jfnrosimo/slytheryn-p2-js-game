@@ -30,7 +30,7 @@ let snakeFrame = [];
 
 let gameLost = false; //default variable for detecting if game is lost
 
-//background
+//map background
 let mapBackground = new Image();
 mapBackground.src = '../assets/images/map_bg_2.jpg';
 
@@ -48,35 +48,71 @@ let play = document.querySelector('.play');
 let main = document.querySelector('main');
 let startSection = document.querySelector('.play-container');
 
+//controls and miscellaneous
+let restartBtn = document.querySelector('.restart');
+
+// set the difficulty button default as easy
+let easy;
+
+
 play.addEventListener('click', () => {
     main.removeChild(startSection);
     createMap();
-});
 
-createFood();
-document.addEventListener('keyup', changePath);
+    easy = setInterval(createMap, 1000/3);
 
+    createFood();
+    document.addEventListener('keyup', changePath);
 
-//set easy as default difficulty
-easyBtn.addEventListener('click', () => {
-    setInterval(createMap, 1000/3);
-    console.log('easy mode');
-    restart();
+    moderateBtn.addEventListener('click', () => {
+        easy = setInterval(createMap, 1000/5);
+        console.log('moderate is working');
+    });
+
+    hardBtn.addEventListener('click', () => {
+        easy = setInterval(createMap, 1000/7);
+        console.log('hard mode');
+            
+        });
+
+    restartBtn.addEventListener('click', () => {
+        restart();
+        clearInterval(easy);
+        console.log('restart is working');
+    });
+
     
 });
 
-//set difficulty to moderate
-moderateBtn.addEventListener('click', () => {
-    setInterval(createMap, 1000/5);
-    restart();
-});
 
-//set difficulty to hard
-hardBtn.addEventListener('click', () => {
-    setInterval(createMap, 1000/7);
-    console.log('hard mode');
+
+// createFood();
+// document.addEventListener('keyup', changePath);
+
+// //set easy as default difficulty
+// easyBtn.addEventListener('click', () => {
+//     // easy;
+//     // clearInterval(moderate);
+//     // clearInterval(hard);
+//     // setInterval(createMap(), 1000/3);
+//     // console.log('easy mode');
     
-});
+// });
+
+
+// //set difficulty to moderate
+// moderateBtn.addEventListener('click', () => {
+//     moderate = setInterval(createMap, 1000/5);
+// });
+// clearInterval(moderate);
+// //set difficulty to hard
+// hardBtn.addEventListener('click', () => {
+//     // clearInterval(easy);
+//     // clearInterval(moderate);
+//     hard = setInterval(createMap(), 1000/7);
+//     // console.log('hard mode');
+    
+// });
 
 function createMap() {
 
@@ -111,11 +147,18 @@ function createMap() {
     snakeXCoor += moveXCoor * sizeOfBlock;
     snakeYCoor += moveYCoor * sizeOfBlock;
     context.drawImage(snakeHead, snakeXCoor, snakeYCoor, sizeOfBlock, sizeOfBlock);
-    context.fillStyle = 'green';    
+    context.fillStyle = 'lime';    
 
     for (let count = 0; count < snakeFrame.length; count++) {
         context.fillRect(snakeFrame[count][0], snakeFrame[count][1], sizeOfBlock, sizeOfBlock);
     }
+
+    // if (snakeFrame.length > 2) {
+    //     clearInterval(update);
+    //     setInterval(createMap, 1000/8);
+    //     console.log('faster movement');
+    // }
+
 
     //detection for collision
     if (snakeXCoor < 0 || snakeXCoor > col * sizeOfBlock || snakeYCoor < 0 || snakeYCoor > row * sizeOfBlock) {
@@ -127,7 +170,6 @@ function createMap() {
         if (snakeXCoor == snakeFrame[count][0] && snakeYCoor == snakeFrame[count][1]) {
             gameLost = true;
             alert('You Died!');
-
         }
     }
 }
@@ -160,8 +202,7 @@ function createFood() {
     foodYCoor = Math.floor(Math.random() * row) * sizeOfBlock;
 }
 
-//controls and miscellaneous
-let restartBtn = document.querySelector('.restart');
+
 
 //restart the game
 function restart() {
@@ -175,10 +216,9 @@ function restart() {
 
     gameLost = false;
 
+    previousScore = 0;
     scoreNumber.textContent = 0;
+
+    createMap();
 }
-restartBtn.addEventListener('click', () => {
-    restart();
-    console.log('restart is working');
-});
 

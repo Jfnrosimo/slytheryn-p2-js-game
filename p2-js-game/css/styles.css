@@ -21,7 +21,7 @@ main {
 .play-container {
     position: absolute;
     width: 60%;
-    height: 75%; 
+    height: 79%; 
     border: 1px solid green;
     display: flex;
     justify-content: center;
