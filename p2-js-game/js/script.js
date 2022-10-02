@@ -3,10 +3,10 @@ let sizeOfBlock = 50;
 let row = 20;
 let col = 30;
 
-let map = document.querySelector('#map');
+const map = document.querySelector('#map');
 map.height = row * sizeOfBlock;
 map.width = col * sizeOfBlock;
-let context = map.getContext('2d'); //draw empty map
+const context = map.getContext('2d'); //draw empty map
 
 //x and y variable coordinates of the food
 let foodXCoor;
@@ -35,25 +35,35 @@ let mapBackground = new Image();
 mapBackground.src = '../assets/images/map_bg_2.jpg';
 
 //score variables
-let scoreNumber = document.querySelector('.score-number');
+const scoreNumber = document.querySelector('.score-number');
 let previousScore = 0;
 
 //difficulty variables
-let difficultyTitle = document.querySelector('.difficulty-title');
-let easyBtn = document.querySelector('.easy');
-let moderateBtn = document.querySelector('.moderate');
-let hardBtn = document.querySelector('.hard');
+const difficultyTitle = document.querySelector('.difficulty-title');
+const easyBtn = document.querySelector('.easy');
+const moderateBtn = document.querySelector('.moderate');
+const hardBtn = document.querySelector('.hard');
 
-// play/start button
-let play = document.querySelector('.play');
-let main = document.querySelector('main');
-let startSection = document.querySelector('.play-container');
+// game start elements
+const play = document.querySelector('.play');
+const main = document.querySelector('main');
+const startSection = document.querySelector('.play-container');
 
 //controls and miscellaneous
-let restartBtn = document.querySelector('.restart');
+const restartBtn = document.querySelector('.restart');
 
-// set the difficulty button default as easy
+// create variable to set the difficulty button default as easy
 let easy;
+
+// sound effects
+const addScore = new Audio('../assets/sound-effects/score.mp3');
+const win = new Audio('../assets/sound-effects/win.wav');
+const lose = new Audio('../assets/sound-effects/lose.wav')
+
+//create game over pop up elements
+const gameLostDiv = document.createElement('div');
+gameLostDiv.className = 'game-lost';
+// let gameLostTitle = document.createElement('')
 
 
 
@@ -118,7 +128,7 @@ restartBtn.addEventListener('click', () => {
 // });
 
 function createMap() {
-
+    
     if(gameLost) {
         return;
     }
@@ -131,6 +141,7 @@ function createMap() {
 
     if (snakeXCoor == foodXCoor && snakeYCoor == foodYCoor) {
         snakeFrame.push([foodXCoor, foodYCoor]);
+        addScore.play();
         createFood();
         
         // add score
@@ -158,6 +169,7 @@ function createMap() {
     //detection for collision
     if (snakeXCoor < 0 || snakeXCoor > col * sizeOfBlock || snakeYCoor < 0 || snakeYCoor > row * sizeOfBlock) {
     gameLost = true;
+    lose.play();
     alert('You Died!');
     
     }
@@ -165,8 +177,15 @@ function createMap() {
     for (let count = 0; count < snakeFrame.length; count++) {
         if (snakeXCoor == snakeFrame[count][0] && snakeYCoor == snakeFrame[count][1]) {
             gameLost = true;
+            lose.play();
             alert('You Died!');
         }
+    }
+
+    if (previousScore == 20) {
+        win.play();
+        // alert('Victory!');
+        restart();
     }
 }
 
