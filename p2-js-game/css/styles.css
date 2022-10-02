@@ -5,10 +5,10 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    outline: 1px solid black;
+    /* outline: 1px solid black; */
 }
 body {
-    background-color: #EDEDED;
+    background-color: #7D9F02;
 }
 .body-bg {
     margin: 0;
@@ -16,24 +16,25 @@ body {
     position: absolute;
     height: 100%;
     z-index: -2;
+    background-size:contain;
 }
 h1 {
     font-family: 'Mystery Quest', cursive;
     font-size: 5rem;
     text-align: center;
-    /* margin-top: 30px; */
 }
 main {
     margin-top: 20px;
     font-family: 'Enhanced LED Board-7', sans-serif;
     width: 100%;
     font-weight: bold;
+    
 }
 .play-container, 
 .game-lost {
     position: absolute;
     width: 60%;
-    height: 79%; 
+    height: 78%; 
     border: 1px solid green;
     text-align: center;
     display: flex;
@@ -41,9 +42,7 @@ main {
     align-items: center;
 }
 .play-container {
-    background-color: rgb(208, 240, 191 , .8);
-    
-    
+    background-color: rgba(91, 231, 16);
 }
 .start-game,
 .game-lost h3 {
@@ -89,9 +88,13 @@ main, h1 {
 }
 .snake-bg {
     position: absolute;
+    left: 53%;
+    top: 30%;
+    z-index: -1;
 }
 canvas {
     width: 100%;
+    border: 6px outset grey;
 }
 .restart-container {
     display: flex;

@@ -66,8 +66,6 @@ gameLostDiv.className = 'game-lost';
 // let gameLostTitle = document.createElement('')
 
 
-
-
 createFood();
 document.addEventListener('keyup', changePath);
 
@@ -97,36 +95,7 @@ restartBtn.addEventListener('click', () => {
 
 
 
-
-
-// createFood();
-// document.addEventListener('keyup', changePath);
-
-// //set easy as default difficulty
-// easyBtn.addEventListener('click', () => {
-//     // easy;
-//     // clearInterval(moderate);
-//     // clearInterval(hard);
-//     // setInterval(createMap(), 1000/3);
-//     // console.log('easy mode');
-    
-// });
-
-
-// //set difficulty to moderate
-// moderateBtn.addEventListener('click', () => {
-//     moderate = setInterval(createMap, 1000/5);
-// });
-// clearInterval(moderate);
-// //set difficulty to hard
-// hardBtn.addEventListener('click', () => {
-//     // clearInterval(easy);
-//     // clearInterval(moderate);
-//     hard = setInterval(createMap(), 1000/7);
-//     // console.log('hard mode');
-    
-// });
-
+//------------- This is the function section ------------//
 function createMap() {
     
     if(gameLost) {
