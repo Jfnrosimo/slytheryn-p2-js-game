@@ -5,7 +5,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    /* outline: 1px solid black; */
+    outline: 1px solid black;
 }
 body {
     background-color: #7D9F02;
@@ -31,7 +31,8 @@ main {
     
 }
 .play-container, 
-.game-lost {
+.game-lost,
+.game-win {
     position: absolute;
     width: 60%;
     height: 78%; 
@@ -45,7 +46,8 @@ main {
     background-color: rgba(91, 231, 16);
 }
 .start-game,
-.game-lost h3 {
+.game-lost h3,
+.game-win h3 {
     font-size: 3.5rem;
     text-transform: uppercase;
     font-weight: 900;
@@ -72,11 +74,18 @@ main {
 .hard:hover {
     background-color: #DB2728;
 }
-.game-lost {
+.game-lost,
+.game-win {
     flex-direction: column;
+    
 }
-.game-lost h3 {
+.game-lost {
+    background-color: #FC100D;
+}
+.game-lost h3,
+.game-win h3 {
     display: block;
+    margin-top: 0;
 }
 input {
     font-family: 'Alkalami', serif;
@@ -99,4 +108,22 @@ canvas {
 .restart-container {
     display: flex;
     justify-content: center;
+}
+.restart {
+    padding: 10px;
+    font-size: 1.5rem;
+    border-radius: 5px;
+    border-style: none;
+    font-family: 'Enhanced LED Board-7', sans-serif;
+    font-weight: bold;
+}
+.restart:hover {
+    border: 1px solid black;
+    box-shadow: 5px 5px gray;
+    background-color: green;
+}
+.center-restart {
+    position: absolute;
+    bottom: 26%;
+    
 }

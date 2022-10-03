@@ -39,15 +39,16 @@ const scoreNumber = document.querySelector('.score-number');
 let previousScore = 0;
 
 //difficulty variables
+const difficultyDiv = document.querySelector('.difficulty');
 const difficultyTitle = document.querySelector('.difficulty-title');
 const easyBtn = document.querySelector('.easy');
 const moderateBtn = document.querySelector('.moderate');
 const hardBtn = document.querySelector('.hard');
 
 // game start elements
-const play = document.querySelector('.play');
 const main = document.querySelector('main');
 const startSection = document.querySelector('.play-container');
+
 
 //controls and miscellaneous
 const restartBtn = document.querySelector('.restart');
@@ -63,39 +64,40 @@ const lose = new Audio('../assets/sound-effects/lose.wav')
 //create game over pop up elements
 const gameLostDiv = document.createElement('div');
 gameLostDiv.className = 'game-lost';
-// let gameLostTitle = document.createElement('')
+
+const gameLostTitle = document.createElement('h3');
+gameLostTitle.textContent = 'You Died...';
+
+const startGame = document.querySelector('.start-game'); 
 
 
-createFood();
-document.addEventListener('keyup', changePath);
-
+//--- Create event listener for easy, moderate and hard button ---//
 easyBtn.addEventListener('click', () => {
-    main.removeChild(startSection);
     easy = setInterval(createMap, 1000/3);
+    main.removeChild(startSection);
 });
 
 moderateBtn.addEventListener('click', () => {
-    main.removeChild(startSection);
     easy = setInterval(createMap, 1000/5);
-    console.log('moderate is working');
+    main.removeChild(startSection);
 });
 
 hardBtn.addEventListener('click', () => {
-    main.removeChild(startSection);
     easy = setInterval(createMap, 1000/7);
-    console.log('hard mode');
+    main.removeChild(startSection);
 });
 
+createFood(); //create food after choosing difficulty
+document.addEventListener('keyup', changePath); //assign arrow key controls
+
+//create event listener for resetting the game
 restartBtn.addEventListener('click', () => {
     restart();
     main.insertBefore(startSection, main.children[0]);
-    clearInterval(easy);
-    console.log('restart is working');
 });
 
 
-
-//------------- This is the function section ------------//
+//------------- This section are all functions ------------//
 function createMap() {
     
     if(gameLost) {
@@ -110,7 +112,7 @@ function createMap() {
 
     if (snakeXCoor == foodXCoor && snakeYCoor == foodYCoor) {
         snakeFrame.push([foodXCoor, foodYCoor]);
-        addScore.play();
+        addScore.play(); // add sound effects with collision with food
         createFood();
         
         // add score
@@ -137,27 +139,29 @@ function createMap() {
 
     //detection for collision
     if (snakeXCoor < 0 || snakeXCoor > col * sizeOfBlock || snakeYCoor < 0 || snakeYCoor > row * sizeOfBlock) {
-    gameLost = true;
-    lose.play();
-    alert('You Died!');
-    
+        gameLost = true;
+        lose.play(); // play the losing sound effects
+        gameLostPopUp(); // show the game lost pop up
+        // alert('You died...')
     }
 
     for (let count = 0; count < snakeFrame.length; count++) {
         if (snakeXCoor == snakeFrame[count][0] && snakeYCoor == snakeFrame[count][1]) {
             gameLost = true;
-            lose.play();
-            alert('You Died!');
+            lose.play(); // play the losing sound effects
+            gameLostPopUp(); // show the game lost pop up
+            // alert('You died...')
         }
     }
 
     if (previousScore == 20) {
         win.play();
-        // alert('Victory!');
+        alert('Victory!');
         restart();
     }
 }
 
+//function for event key controls
 function changePath(event) {
     if (event.code == 'ArrowLeft' && moveXCoor != 1) {
         moveXCoor = -1;
@@ -180,6 +184,7 @@ function changePath(event) {
     }
 }
 
+//create an object randomly around the map
 function createFood() {
     //(0-1) * col --> (0 - 19.9999) --> (0-19) * 25
     foodXCoor = Math.floor(Math.random() * col) * sizeOfBlock;
@@ -201,6 +206,26 @@ function restart() {
     previousScore = 0;
     scoreNumber.textContent = 0;
 
+    clearInterval(easy);
+
     createMap();
+}
+
+//create function that modifies the start game into you died pop up
+function gameLostPopUp() {
+    main.insertBefore(gameLostDiv, main.children[1]);
+    gameLostDiv.appendChild(gameLostTitle);
+    difficultyDiv.removeChild(startGame); //remove from game lost pop up
+    restartBtn.classList.add('center-restart');
+
+    //after game lost pop up use restart button to go back to start game
+    restartBtn.addEventListener('click', () => {
+        main.removeChild(gameLostDiv);
+        restart();
+
+        startSection.append(difficultyDiv);
+        difficultyDiv.insertBefore(startGame, difficultyDiv.children[0]);
+        restartBtn.classList.remove('center-restart');
+    });
 }
 
