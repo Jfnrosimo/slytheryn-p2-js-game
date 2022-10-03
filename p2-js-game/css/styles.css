@@ -5,7 +5,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    outline: 1px solid black;
+    /* outline: 1px solid black; */
 }
 body {
     background-color: #7D9F02;
@@ -100,13 +100,20 @@ main, h1 {
 }
 .snake-bg {
     position: absolute;
-    left: 53%;
-    top: 30%;
+    left: 56%;
+    top: 38%;
+    z-index: -1;
+}
+.snake-tail {
+    position: absolute;
+    left: -4%;
+    bottom: 10%;
     z-index: -1;
 }
 canvas {
     width: 100%;
     border: 6px outset grey;
+    background-color: grey;
 }
 .restart-container {
     display: flex;
@@ -128,5 +135,20 @@ canvas {
 .center-restart {
     position: absolute;
     bottom: 26%;
-    
+}
+.instruction-title {
+    font-size: 1.5rem;
+}
+.instructions-container {
+    padding: 6px;
+    position: absolute;
+    left: 2%;
+    width: 17%;
+    border: 2px solid black;
+    background-color: #E3E3E3;
+}
+.instructions-container li {
+    padding: 5px;
+    list-style-position: inside;
+    color: #010101;
 }

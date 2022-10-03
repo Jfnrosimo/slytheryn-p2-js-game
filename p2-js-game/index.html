@@ -16,7 +16,19 @@
 
     <main>
 
-        <!-- create play button after window loads -->
+        <!----- create instructions ----->
+        <div class="instructions-container">
+            <p class="instruction-title">Instructions</p>
+            <ol>
+                <li>Select game difficulty to start the game</li>
+                <li>Slytheryn is starting at the top left side</li>
+                <li>Use up, down, left and right arrow keys to move slytheryn</li>
+                <li>Find the hidden red chicken and eat them</li>
+                <li>Eat as much chicken as you can until slytheryn gets fed up.</li>
+            </ol>
+        </div>
+
+        <!----- create play button after window loads ----->
         <div class="play-container">
             <div class="difficulty">
                 <h2 class="start-game">Start Game</h2>
@@ -39,16 +51,17 @@
             <input type="button" class="restart" value="Restart">
         </div> -->
 
-        <!-- score counter -->
+        <!----- score counter ----->
         <p>Score: <span class="score-number">0</span></p>
 
-        <!-- map canvas -->
+        <!----- map canvas ----->
         <canvas id='map'></canvas>
 
-        <!-- snake background design -->
+        <!----- snake background design ----->
+        <img class="snake-tail" src="./assets/images/snake_tail_bg.png" alt="snake tail">
         <img  class="snake-bg" src="./assets/images/snake_bg.png" alt="snake background">
 
-        <!-- restart button -->
+        <!----- restart button ----->
         <div class="restart-container">
             <input type="button" class="restart" value="Restart">
         </div>
