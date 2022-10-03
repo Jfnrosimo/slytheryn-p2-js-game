@@ -68,7 +68,14 @@ gameLostDiv.className = 'game-lost';
 const gameLostTitle = document.createElement('h3');
 gameLostTitle.textContent = 'You Died...';
 
-const startGame = document.querySelector('.start-game'); 
+const startGame = document.querySelector('.start-game');
+
+//create win game pop up elements
+const gameWinDiv = document.createElement('div');
+gameWinDiv.className = 'game-win';
+
+const gameWinTitle = document.createElement('h3')
+
 
 
 //--- Create event listener for easy, moderate and hard button ---//
@@ -83,7 +90,7 @@ moderateBtn.addEventListener('click', () => {
 });
 
 hardBtn.addEventListener('click', () => {
-    easy = setInterval(createMap, 1000/7);
+    easy = setInterval(createMap, 1000/8);
     main.removeChild(startSection);
 });
 
@@ -154,9 +161,10 @@ function createMap() {
         }
     }
 
-    if (previousScore == 20) {
+    if (previousScore == 700) {
         win.play();
-        alert('Victory!');
+        gameWinPopUp();
+        // alert('Victory!');
         restart();
     }
 }
@@ -229,3 +237,21 @@ function gameLostPopUp() {
     });
 }
 
+//create function that modifies the start game into you win pop up
+function gameWinPopUp() {
+    main.insertBefore(gameWinDiv, main.children[1]);
+    gameWinDiv.appendChild(gameLostTitle);
+    gameLostTitle.textContent = 'You Win!!!';
+
+    restartBtn.classList.add('center-restart');
+
+    //after game lost pop up use restart button to go back to start game
+    restartBtn.addEventListener('click', () => {
+        main.removeChild(gameWinDiv);
+        restart();
+
+        startSection.append(difficultyDiv);
+        difficultyDiv.insertBefore(startGame, difficultyDiv.children[0]);
+        restartBtn.classList.remove('center-restart');
+    });
+}

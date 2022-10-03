@@ -77,11 +77,14 @@ main {
 .game-lost,
 .game-win {
     flex-direction: column;
-    
 }
 .game-lost {
     background-color: #FC100D;
 }
+.game-win {
+    background-color: #ECE236;
+}
+.game-win
 .game-lost h3,
 .game-win h3 {
     display: block;
