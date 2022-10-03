@@ -80,12 +80,12 @@ const gameWinTitle = document.createElement('h3')
 
 //--- Create event listener for easy, moderate and hard button ---//
 easyBtn.addEventListener('click', () => {
-    easy = setInterval(createMap, 1000/3);
+    easy = setInterval(createMap, 1000/4);
     main.removeChild(startSection);
 });
 
 moderateBtn.addEventListener('click', () => {
-    easy = setInterval(createMap, 1000/5);
+    easy = setInterval(createMap, 1000/6);
     main.removeChild(startSection);
 });
 
@@ -161,10 +161,9 @@ function createMap() {
         }
     }
 
-    if (previousScore == 700) {
+    if (previousScore == 500) {
         win.play();
         gameWinPopUp();
-        // alert('Victory!');
         restart();
     }
 }
