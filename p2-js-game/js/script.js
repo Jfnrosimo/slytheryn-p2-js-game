@@ -117,6 +117,7 @@ function createMap() {
     // draw the random food in the map
     context.drawImage(foodImage,foodXCoor, foodYCoor, sizeOfBlock, sizeOfBlock);
 
+    //check if snake head has the same coordinate as food
     if (snakeXCoor == foodXCoor && snakeYCoor == foodYCoor) {
         snakeFrame.push([foodXCoor, foodYCoor]);
         addScore.play(); // add sound effects with collision with food
@@ -127,10 +128,12 @@ function createMap() {
         scoreNumber.textContent = previousScore;
     }
 
+    //create a for loop to advance the snake frame into its next position
     for ( let count = snakeFrame.length - 1; count > 0; count--) {
         snakeFrame[count] = snakeFrame[count - 1];
     }
 
+    //insert the current snake coordinates into the snake's first index
     if (snakeFrame.length) {
         snakeFrame[0] = [snakeXCoor, snakeYCoor];
     }
