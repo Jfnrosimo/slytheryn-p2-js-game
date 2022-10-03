@@ -5,7 +5,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    /* outline: 1px solid black; */
+    outline: 1px solid black;
 }
 body {
     background-color: #7D9F02;
@@ -160,4 +160,12 @@ canvas {
 .instruction-snake,
 .instruction-chicken {
     width: 40px;
+}
+footer {
+    position: absolute;
+    background-color:#85BEE2;
+    width: 100%;
+    bottom: 0;
+    padding: 7px;
+    text-align: center;
 }

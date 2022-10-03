@@ -193,7 +193,7 @@ function changePath(event) {
 
 //create an object randomly around the map
 function createFood() {
-    //(0-1) * col --> (0 - 19.9999) --> (0-19) * 25
+    //(0-1) * col --> (0 - 29.9999) --> (0-19) * 50
     foodXCoor = Math.floor(Math.random() * col) * sizeOfBlock;
     foodYCoor = Math.floor(Math.random() * row) * sizeOfBlock;
 }
