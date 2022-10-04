@@ -164,7 +164,7 @@ function createMap() {
         }
     }
 
-    if (previousScore == 500) {
+    if (previousScore == 600) {
         win.play();
         gameWinPopUp();
         restart();
