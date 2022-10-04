@@ -164,7 +164,7 @@ function createMap() {
         }
     }
 
-    if (previousScore == 600) {
+    if (previousScore == 20) {
         win.play();
         gameWinPopUp();
         restart();
@@ -223,7 +223,7 @@ function restart() {
 
 //create function that modifies the start game into you died pop up
 function gameLostPopUp() {
-    main.insertBefore(gameLostDiv, main.children[1]);
+    main.insertBefore(gameLostDiv, main.children[0]);
     gameLostDiv.appendChild(gameLostTitle);
     difficultyDiv.removeChild(startGame); //remove from game lost pop up
     restartBtn.classList.add('center-restart');
