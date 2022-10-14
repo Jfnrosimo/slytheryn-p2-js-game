@@ -138,16 +138,18 @@ function createMap() {
         snakeFrame[0] = [snakeXCoor, snakeYCoor];
     }
 
+    //Set up the snake coordinates to create a moving snake each time this function is executed
     snakeXCoor += moveXCoor * sizeOfBlock;
     snakeYCoor += moveYCoor * sizeOfBlock;
     context.drawImage(snakeHead, snakeXCoor, snakeYCoor, sizeOfBlock, sizeOfBlock);
     context.fillStyle = 'lime';    
 
+    //Add length to the snake's body each time the head touch the random food
     for (let count = 0; count < snakeFrame.length; count++) {
         context.fillRect(snakeFrame[count][0], snakeFrame[count][1], sizeOfBlock, sizeOfBlock);
     }
 
-    //detection for collision
+    //Detection for collision in the edge of map
     if (snakeXCoor < 0 || snakeXCoor > col * sizeOfBlock || snakeYCoor < 0 || snakeYCoor > row * sizeOfBlock) {
         gameLost = true;
         lose.play(); // play the losing sound effects
@@ -155,6 +157,7 @@ function createMap() {
         // alert('You died...')
     }
 
+    //Create a condition that detects collision of the head into the snake's body
     for (let count = 0; count < snakeFrame.length; count++) {
         if (snakeXCoor == snakeFrame[count][0] && snakeYCoor == snakeFrame[count][1]) {
             gameLost = true;
@@ -164,7 +167,8 @@ function createMap() {
         }
     }
 
-    if (previousScore == 20) {
+    //Create condition to indicate a win in the game after reaching the needed score
+    if (previousScore == 600) {
         win.play();
         gameWinPopUp();
         restart();
@@ -201,7 +205,7 @@ function createFood() {
     foodYCoor = Math.floor(Math.random() * row) * sizeOfBlock;
 }
 
-//restart the game
+//create function to reset the variables' coordinates, level of difficulty and the map
 function restart() {
     snakeXCoor = sizeOfBlock;
     snakeYCoor = sizeOfBlock;
